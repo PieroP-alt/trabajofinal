@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus PC | Componentes</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <nav class="barra">
+            <a class="logo" href="#inicio">NEXUS<span>PC</span></a>
+            <div class="menu">
+                <a href="#inicio">Inicio</a>
+                <a href="#productos">Productos</a>
+                <a href="#contacto">Contacto</a>
+                <button id="botonCarrito">🛒 Carrito <b id="contador">0</b></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div>
+                <p class="etiqueta">COMPONENTES PARA PC</p>
+                <h1>Potencia tu PC al <span>siguiente nivel.</span></h1>
+                <p class="descripcion">Encuentra procesadores, tarjetas gráficas, memoria, almacenamiento y monitores para mejorar tu computadora.</p>
+                <a class="boton" href="#productos">Ver productos</a>
+            </div>
+            <div class="hero-card">
+                <div class="circulo">⚡</div>
+                <h3>Rendimiento</h3>
+                <p>Componentes para cada tipo de PC.</p>
+            </div>
+        </section>
+
+        <section class="seccion" id="productos">
+            <div class="titulo-seccion">
+                <div>
+                    <p class="etiqueta">CATÁLOGO</p>
+                    <h2>Nuestros productos</h2>
+                </div>
+                <input type="text" id="buscador" placeholder="Buscar producto...">
+            </div>
+
+            <div class="filtros" id="filtros">
+                <button class="filtro activo" data-categoria="Todos">Todos</button>
+                <button class="filtro" data-categoria="Procesadores">Procesadores</button>
+                <button class="filtro" data-categoria="Gráficas">Gráficas</button>
+                <button class="filtro" data-categoria="RAM">RAM</button>
+                <button class="filtro" data-categoria="Placas">Placas</button>
+                <button class="filtro" data-categoria="Almacenamiento">Almacenamiento</button>
+                <button class="filtro" data-categoria="Monitores">Monitores</button>
+            </div>
+
+            <div class="productos" id="listaProductos"></div>
+        </section>
+
+        <section class="contacto" id="contacto">
+            <div>
+                <p class="etiqueta">CONTACTO</p>
+                <h2>¿Necesitas ayuda para elegir?</h2>
+                <p>Escríbenos y te ayudaremos a encontrar componentes para tu PC.</p>
+            </div>
+            <form id="formulario">
+                <input type="text" id="nombre" placeholder="Tu nombre" required>
+                <input type="email" id="correo" placeholder="Tu correo" required>
+                <textarea id="mensaje" placeholder="Escribe tu mensaje" rows="3" required></textarea>
+                <button class="boton" type="submit">Enviar mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <div class="ventana" id="ventanaCarrito">
+        <div class="carrito">
+            <button class="cerrar" id="cerrarCarrito">×</button>
+            <h2>Tu carrito</h2>
+            <div id="itemsCarrito"></div>
+            <div class="total">Total: <strong id="total">S/ 0</strong></div>
+            <button class="boton comprar" id="comprar">Finalizar compra</button>
+        </div>
+    </div>
+
+    <footer>
+    <div>
+        <strong>NEXUS PC</strong>
+        <p>Componentes y tecnología para tu PC</p>
+    </div>
+
+    <div>
+        <strong>Redes sociales</strong>
+        <p>
+            <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+        </p>
+        <p>
+            <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+        </p>
+        <p>
+            <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
+        </p>
+    </div>
+
+    <div>
+        <p>© 2026 Nexus PC</p>
+        <p>Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
