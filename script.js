@@ -27,13 +27,18 @@ let categoriaActual = "Todos";
 const lista = document.getElementById("listaProductos");
 const contador = document.getElementById("contador");
 const buscador = document.getElementById("buscador");
+const ventana = document.getElementById("ventanaCarrito");
 
 function mostrarProductos() {
     const texto = buscador.value.toLowerCase();
 
     const encontrados = productos.filter(producto => {
-        const coincideCategoria = categoriaActual === "Todos" || producto.categoria === categoriaActual;
-        return coincideCategoria && producto.nombre.toLowerCase().includes(texto);
+        const coincideCategoria =
+            categoriaActual === "Todos" ||
+            producto.categoria === categoriaActual;
+
+        return coincideCategoria &&
+            producto.nombre.toLowerCase().includes(texto);
     });
 
     lista.innerHTML = encontrados.map(producto => `
@@ -41,11 +46,16 @@ function mostrarProductos() {
             <div class="imagen-producto">
                 <img src="imagenes/${producto.imagen}" alt="${producto.nombre}">
             </div>
+
             <div class="info">
                 <span class="categoria">${producto.categoria}</span>
                 <h3>${producto.nombre}</h3>
                 <p class="precio">S/ ${producto.precio}</p>
-                <button class="agregar" onclick="agregarCarrito('${producto.nombre}')">Agregar al carrito</button>
+
+                <button class="agregar"
+                    onclick="agregarCarrito('${producto.nombre}')">
+                    Agregar al carrito
+                </button>
             </div>
         </article>
     `).join("");
@@ -53,8 +63,10 @@ function mostrarProductos() {
 
 function agregarCarrito(nombre) {
     const producto = productos.find(item => item.nombre === nombre);
+
     carrito.push(producto);
     actualizarCarrito();
+
     alert("Producto agregado al carrito");
 }
 
@@ -69,13 +81,23 @@ function actualizarCarrito() {
     } else {
         items.innerHTML = carrito.map((producto, indice) => `
             <div class="item">
-                <span>${producto.nombre}<br><small>S/ ${producto.precio}</small></span>
-                <button onclick="eliminarProducto(${indice})">Eliminar</button>
+                <span>
+                    ${producto.nombre}<br>
+                    <small>S/ ${producto.precio}</small>
+                </span>
+
+                <button onclick="eliminarProducto(${indice})">
+                    Eliminar
+                </button>
             </div>
         `).join("");
     }
 
-    const suma = carrito.reduce((total, producto) => total + producto.precio, 0);
+    const suma = carrito.reduce(
+        (total, producto) => total + producto.precio,
+        0
+    );
+
     total.textContent = `S/ ${suma}`;
 }
 
@@ -86,9 +108,14 @@ function eliminarProducto(indice) {
 
 document.querySelectorAll(".filtro").forEach(boton => {
     boton.addEventListener("click", () => {
-        document.querySelector(".filtro.activo").classList.remove("activo");
+
+        document.querySelector(".filtro.activo")
+            .classList.remove("activo");
+
         boton.classList.add("activo");
+
         categoriaActual = boton.dataset.categoria;
+
         mostrarProductos();
     });
 });
@@ -96,26 +123,38 @@ document.querySelectorAll(".filtro").forEach(boton => {
 buscador.addEventListener("input", mostrarProductos);
 
 document.getElementById("botonCarrito").addEventListener("click", () => {
-    document.getElementById("ventanaCarrito").classList.add("mostrar");
+    ventana.classList.add("mostrar");
 });
 
 document.getElementById("cerrarCarrito").addEventListener("click", () => {
-    document.getElementById("ventanaCarrito").classList.remove("mostrar");
+    ventana.classList.remove("mostrar");
+});
+
+ventana.addEventListener("click", evento => {
+    if (evento.target === ventana) {
+        ventana.classList.remove("mostrar");
+    }
 });
 
 document.getElementById("comprar").addEventListener("click", () => {
+
     if (carrito.length === 0) {
         alert("Agrega productos antes de finalizar la compra.");
     } else {
         alert("¡Compra registrada! Gracias por comprar en Nexus PC.");
+
         carrito = [];
+
         actualizarCarrito();
     }
 });
 
 document.getElementById("formulario").addEventListener("submit", evento => {
+
     evento.preventDefault();
+
     alert("Mensaje enviado correctamente.");
+
     evento.target.reset();
 });
 
